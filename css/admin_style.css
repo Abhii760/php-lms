@@ -292,3 +292,15 @@ th {
 .arrow-btn:hover {
   background-color: #555;
 }
+
+.error-message {
+  color: #ff4d4d; /* Red color for error */
+  background-color: #ffe6e6; /* Light red background */
+  border: 1px solid #ff4d4d; /* Red border */
+  padding: 10px; /* Some padding */
+  border-radius: 5px; /* Rounded corners */
+  font-family: Arial, sans-serif; /* Font style */
+  font-size: 14px; /* Font size */
+  margin-top: 10px; /* Space above the message */
+  display: none; /* Initially hidden */
+}

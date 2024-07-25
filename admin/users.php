@@ -17,8 +17,9 @@ if ($pdo) {
 
 <!-- Add User Form -->
 <h3>Add User</h3>
-<form action="./admin/users/process_user.php?action=add" method="post">
-    <input type="text" name="username" placeholder="Username" required>
+<form id="addUserForm" action="./admin/users/process_user.php?action=add" method="post">
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <span id="usernameError" class="error-message"></span>
     <input type="password" name="password" placeholder="Password" required>
     <input type="text" name="first_name" placeholder="First Name" required>
     <input type="text" name="last_name" placeholder="Last Name" required>
@@ -168,4 +169,47 @@ document.getElementById('rightArrow').addEventListener('mousedown', function() {
 
 document.getElementById('rightArrow').addEventListener('mouseup', stopScrolling);
 document.getElementById('rightArrow').addEventListener('mouseleave', stopScrolling);
+
+document.getElementById('rightArrow').addEventListener('mouseleave', stopScrolling);
+
+document.getElementById('username').addEventListener('keyup', function() {
+    console.log(this.value);
+    var username = this.value;
+    var usernameError = document.getElementById('usernameError');
+    var submitButton = document.querySelector('input[type="submit"]');
+
+    // Clear the message if the input is empty
+    if (username.length === 0) {
+        usernameError.textContent = '';
+        submitButton.disabled = true;
+        return;
+    }
+
+    // Check if the username is at least 4 characters long
+    if (username.length < 4) {
+        usernameError.textContent = 'Your username should be at least 4 characters.';
+        usernameError.style.color = 'red';
+        submitButton.disabled = true;
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', './admin/check_username.php', true); // Adjust the path if necessary
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.exists) {
+                usernameError.textContent = 'Username already exists. Please choose another.';
+                usernameError.style.color = 'red';
+                submitButton.disabled = true;
+            } else {
+                usernameError.textContent = 'Username available.';
+                usernameError.style.color = 'green';
+                submitButton.disabled = false;
+            }
+        }
+    };
+    xhr.send('username=' + encodeURIComponent(username));
+});
 </script>
