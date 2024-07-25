@@ -54,5 +54,3 @@ function updateAdminData($adminId, $name, $profilePicture)
     $stmt = $pdo->prepare('UPDATE admins SET name = ?, profile_picture = ? WHERE id = ?');
     $stmt->execute([$name, $profilePicture, $adminId]);
 }
-
-// Add more functions as needed

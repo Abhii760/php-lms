@@ -130,10 +130,18 @@ form {
 
 form input[type="text"],
 form input[type="password"],
-form input[type="email"],
-form select {
+form input[type="email"] {
   display: block;
   width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form select {
+  display: block;
+  width: calc(100% + 2px);
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -148,6 +156,15 @@ form input[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
+}
+
+form input[type="date"] {
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 form input[type="submit"]:hover {
@@ -183,7 +200,7 @@ table tr:hover {
 }
 
 table a {
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -223,4 +240,55 @@ table a:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+  position: sticky;
+  right: 0;
+  background: #333;
+  color: #f1f1f1;
+}
+
+.table-wrapper {
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.arrow-keys {
+  position: fixed;
+  bottom: 10px;
+  left: 60%;
+  transform: translateX(-50%);
+  display: none; /* Initially hidden */
+  z-index: 1000;
+}
+
+.arrow-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.arrow-btn:hover {
+  background-color: #555;
 }
