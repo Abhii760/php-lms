@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include '../includes/functions.php';
+
 ?>
 
 <h2>Manage Users</h2>

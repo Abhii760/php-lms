@@ -17,29 +17,83 @@ header h1 {
   margin: 0;
 }
 
-nav {
-  margin: 10px 0;
+.profile-menu {
+  position: relative;
+  display: inline-block;
 }
 
-nav a {
+.profile-menu img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.profile-menu-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+}
+
+.profile-menu-content a {
+  color: rgb(46, 46, 46);
+  background-color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.profile-menu-content a:hover {
+  background-color: #747474;
+  color: rgb(255, 255, 255);
+}
+
+.profile-menu:hover .profile-menu-content {
+  display: block;
+}
+
+/* Container styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+  display: block;
   color: #fff;
   text-decoration: none;
-  margin: 0 15px;
-  padding: 5px 10px;
+  margin: 10px 0;
+  padding: 10px;
   background-color: #444;
   border-radius: 5px;
 }
 
-nav a:hover {
+.sidebar a:hover {
   background-color: #555;
 }
 
 /* Main content styles */
 main {
+  margin-left: 240px; /* Adjust based on sidebar width */
   padding: 20px;
   background-color: #fff;
-  margin: 20px auto;
-  max-width: 800px;
+  max-width: calc(100% - 280px); /* Adjust based on sidebar width */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -50,14 +104,15 @@ p {
 
 /* Responsive design */
 @media (max-width: 600px) {
-  nav a {
-    display: block;
-    margin: 5px 0;
+  .sidebar {
+    width: 100%;
+    position: relative;
+    box-shadow: none;
   }
 
   main {
-    margin: 10px;
-    padding: 10px;
+    margin-left: 0;
+    max-width: 100%;
   }
 }
 
@@ -69,6 +124,8 @@ form {
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
 }
 
 form input[type="text"],
@@ -76,7 +133,7 @@ form input[type="password"],
 form input[type="email"],
 form select {
   display: block;
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -90,6 +147,7 @@ form input[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%;
 }
 
 form input[type="submit"]:hover {
@@ -135,6 +193,12 @@ table a:hover {
 
 /* Responsive design */
 @media (max-width: 600px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   form input[type="text"],
   form input[type="password"],
   form input[type="email"],
@@ -142,6 +206,7 @@ table a:hover {
   form input[type="submit"] {
     width: 100%;
     margin: 5px 0;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   }
 
   table th,
@@ -149,9 +214,10 @@ table a:hover {
     padding: 5px;
   }
 }
+
 /* Search bar styles */
 #searchInput {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;

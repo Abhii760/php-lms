@@ -38,4 +38,21 @@ function getAllMaterials()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// Fetch admin data
+function getAdminData($adminId)
+{
+    global $pdo;
+    $stmt = $pdo->prepare('SELECT name, profile_picture FROM admins WHERE id = ?');
+    $stmt->execute([$adminId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+// Update admin data
+function updateAdminData($adminId, $name, $profilePicture)
+{
+    global $pdo;
+    $stmt = $pdo->prepare('UPDATE admins SET name = ?, profile_picture = ? WHERE id = ?');
+    $stmt->execute([$name, $profilePicture, $adminId]);
+}
+
 // Add more functions as needed
