@@ -172,44 +172,52 @@ document.getElementById('rightArrow').addEventListener('mouseleave', stopScrolli
 
 document.getElementById('rightArrow').addEventListener('mouseleave', stopScrolling);
 
-document.getElementById('username').addEventListener('keyup', function() {
-    console.log(this.value);
-    var username = this.value;
-    var usernameError = document.getElementById('usernameError');
-    var submitButton = document.querySelector('input[type="submit"]');
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('username').addEventListener('keyup', function() {
+        var username = this.value;
+        var usernameError = document.getElementById('usernameError');
+        var submitButton = document.querySelector('input[type="submit"]');
 
-    // Clear the message if the input is empty
-    if (username.length === 0) {
-        usernameError.textContent = '';
-        submitButton.disabled = true;
-        return;
-    }
-
-    // Check if the username is at least 4 characters long
-    if (username.length < 4) {
-        usernameError.textContent = 'Your username should be at least 4 characters.';
-        usernameError.style.color = 'red';
-        submitButton.disabled = true;
-        return;
-    }
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', './admin/check_username.php', true); // Adjust the path if necessary
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.exists) {
-                usernameError.textContent = 'Username already exists. Please choose another.';
-                usernameError.style.color = 'red';
-                submitButton.disabled = true;
-            } else {
-                usernameError.textContent = 'Username available.';
-                usernameError.style.color = 'green';
-                submitButton.disabled = false;
-            }
+        // Clear the message if the input is empty
+        if (username.length === 0) {
+            usernameError.textContent = '';
+            usernameError.style.display = 'none';
+            submitButton.disabled = true;
+            return;
         }
-    };
-    xhr.send('username=' + encodeURIComponent(username));
+
+        // Check if the username is at least 4 characters long
+        if (username.length < 4) {
+            usernameError.textContent = 'Your username should be at least 4 characters.';
+            usernameError.style.display = 'block';
+            submitButton.disabled = true;
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './admin/check_username.php', true); // Adjust the path if necessary
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.exists) {
+                    usernameError.textContent = 'Username already exists. Please choose another.';
+                    usernameError.style.display = 'block';
+                    usernameError.style.color = 'red';
+                    usernameError.style.backgroundColor = '#fff1e6';
+                    usernameError.style.borderColor = 'red';
+                    submitButton.disabled = true;
+                } else {
+                    usernameError.textContent = 'Username available.';
+                    usernameError.style.display = 'block';
+                    usernameError.style.color = 'green';
+                    usernameError.style.backgroundColor = '#e6ffe6';
+                    usernameError.style.borderColor = 'green';
+                    submitButton.disabled = false;
+                }
+            }
+        };
+        xhr.send('username=' + encodeURIComponent(username));
+    });
 });
 </script>
