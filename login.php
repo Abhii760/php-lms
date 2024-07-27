@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <h2>Login</h2>
     <form method="POST" action="login.php">
+        <h2>Login</h2>
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit">Login</button>
         </div>
         <?php if (isset($error)) : ?>
-        <div class="error"><?php echo $error; ?></div>
+            <div class="error"><?php echo $error; ?></div>
         <?php endif; ?>
     </form>
 </body>
