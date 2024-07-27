@@ -49,16 +49,15 @@ if ($page === 'profile') {
     <header>
         <h1>Admin Dashboard</h1>
         <nav>
-            <div class="profile-menu">
-                <img src="uploads/<?php echo htmlspecialchars($_SESSION['user']['profile_picture']); ?>"
-                    alt="Profile Picture">
-                <div class="profile-menu-content">
-                    <a href="admin.php?page=profile">Profile</a>
-                    <a href="logout.php">Logout</a>
-                </div>
-            </div>
             <div>
                 <nav class="sidebar">
+                    <div class="profile-menu">
+                        <img src="img/profile/<?php echo htmlspecialchars($_SESSION['user']['profile_picture']); ?>" alt="Profile Picture">
+                        <div class="profile-menu-content">
+                            <a href="admin.php?page=profile">Profile</a>
+                            <a href="logout.php">Logout</a>
+                        </div>
+                    </div>
                     <a href="admin.php?page=dashboard">Dashboard</a>
                     <a href="admin.php?page=users">Manage Users</a>
                     <a href="admin.php?page=courses">Manage Courses</a>
@@ -72,20 +71,18 @@ if ($page === 'profile') {
         // Load the selected page
         if ($page === 'profile') {
         ?>
-        <h2>Admin Profile</h2>
-        <form action="admin.php?page=profile" method="POST" enctype="multipart/form-data">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($adminData['name']); ?>"
-                required>
+            <h2>Admin Profile</h2>
+            <form action="admin.php?page=profile" method="POST" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($adminData['name']); ?>" required>
 
-            <label for="profile_picture">Profile Picture:</label>
-            <input type="file" id="profile_picture" name="profile_picture" required>
+                <label for="profile_picture">Profile Picture:</label>
+                <input type="file" id="profile_picture" name="profile_picture" required>
 
-            <button type="submit">Update Profile</button>
-        </form>
-        <h3>Current Profile Picture:</h3>
-        <img src="uploads/<?php echo htmlspecialchars($adminData['profile_picture']); ?>" alt="Profile Picture"
-            width="100">
+                <button type="submit">Update Profile</button>
+            </form>
+            <h3>Current Profile Picture:</h3>
+            <img src="uploads/<?php echo htmlspecialchars($adminData['profile_picture']); ?>" alt="Profile Picture" width="100">
         <?php
         } else {
             $file = 'admin/' . $page . '.php';

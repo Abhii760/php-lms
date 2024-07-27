@@ -78,6 +78,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['action']) && $_GET['act
     }
 }
 
+// Check if the action is set and is 'edit'
+if (isset($_GET['action']) && $_GET['action'] == 'edit') {
+    // Validate and sanitize input data
+    $user_id = $_POST['user_id'];
+    $username = htmlspecialchars($_POST['username']);
+    $first_name = htmlspecialchars($_POST['first_name']);
+    $last_name = htmlspecialchars($_POST['last_name']);
+    $email = htmlspecialchars($_POST['email']);
+    $tel_number = htmlspecialchars($_POST['tel_number']);
+    $dob = htmlspecialchars($_POST['dob']);
+    $address = htmlspecialchars($_POST['address']);
+    $category_id = htmlspecialchars($_POST['category_id']);
+    $department_id = htmlspecialchars($_POST['department_id']);
+
+    // Prepare the SQL update statement
+    $sql = "UPDATE users SET 
+                username = :username,
+                first_name = :first_name,
+                last_name = :last_name,
+                email = :email,
+                tel_number = :tel_number,
+                dob = :dob,
+                address = :address,
+                category_id = :category_id,
+                department_id = :department_id
+            WHERE user_id = :user_id";
+
+    // Execute the update statement
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        'username' => $username,
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'tel_number' => $tel_number,
+        'dob' => $dob,
+        'address' => $address,
+        'category_id' => $category_id,
+        'department_id' => $department_id,
+        'user_id' => $user_id
+    ]);
+
+    // Redirect to the user list or show a success message
+    header('Location: ../../admin.php?page=users');
+    exit();
+}
+
+
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $user_id = $_GET['id'];
 

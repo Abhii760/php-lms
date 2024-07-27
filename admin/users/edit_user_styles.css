@@ -1,0 +1,76 @@
+/* Style for the form container */
+#editUserForm {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* Style for the input fields */
+#editUserForm input[type="text"],
+#editUserForm input[type="password"],
+#editUserForm input[type="email"],
+#editUserForm input[type="date"],
+#editUserForm select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style for the submit and cancel buttons */
+#editUserForm input[type="submit"],
+#editUserForm input[type="button"] {
+  width: 48%;
+  padding: 10px;
+  margin: 10px 1%;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Style for the cancel button */
+#editUserForm input[type="button"] {
+  background-color: #f44336;
+}
+
+/* Style for the buttons on hover */
+#editUserForm input[type="submit"]:hover,
+#editUserForm input[type="button"]:hover {
+  opacity: 0.9;
+}
+
+/* Style for the select dropdowns */
+#editUserForm select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="%23333" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>')
+    no-repeat right 10px center;
+  background-size: 10px;
+}
+
+/* Style for the form labels */
+#editUserForm label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Style for the heading */
+#editUserForm h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
